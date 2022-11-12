@@ -1,11 +1,11 @@
 import React from 'react';
-import axios from 'axios';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { moviesRequest } from '../../redux/slices/moviesSlice';
 
 import Slider from "react-slick";
 import MultiSlider from "../../components/sliders/MultiSlider";
 import SingleSlider from "../../components/sliders/SingleSlider";
-
-import loki from '../../assets/imgs/loki.svg';
 
 import prevbtn from '../../assets/imgs/prevbtn.svg'
 import nextbtn from '../../assets/imgs/nextbtn.svg'
@@ -46,29 +46,20 @@ const Movies = () => {
     const goPrev = () => slideRef.current.slickPrev();
 
 
-    const API_KEY = '3e9b52dbfb07553d4df2f99c97de61e7';
+    const dispatch = useDispatch();
+    const { status, trendingState, popularState } = useSelector(state => state.movies)
 
-    const [trending, setTrending] = React.useState([]);
-    const [popular, setPopular] = React.useState([]);
-
-    const getData = async () => {
-        const getTrending = await axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}`);
-        const getPopular = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
-
-        setTrending(getTrending.data.results.slice(0, 7));
-        setPopular(getPopular.data.results);
-    };
     React.useEffect(() => {
-        getData();
+        dispatch(moviesRequest());
     }, []);
-    console.log(popular)
+    
 
     return (
       <>
         <div>
             <img onClick={goPrev} className='absolute top-[220px] left-[338px] cursor-pointer z-50' src={prevbtn} alt='img' />
             <Slider className='z-10 w-[100%] h-[400px] overflow-hidden'  ref={slideRef} {...singleSlider} >
-                {trending && trending.map(item => (
+                {trendingState && trendingState.map(item => (
                     <SingleSlider img={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`} title={item.title} key={item.id} />
                 ))}
             </Slider>
@@ -86,13 +77,13 @@ const Movies = () => {
         <div>
             <div className='text-[25px] text-[#F9F9F9] font-bold mt-[20px] mb-[15px]'>Popular on TinyMoviez</div>
             <Slider  {...multiSlider} >
-                {popular && popular.map(item => (
+                {popularState && popularState.map(item => (
                     <MultiSlider 
                         title={item.title} 
                         back={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`} 
-                        // back={loki}
                         ep={`${item.popularity.toFixed()} Ep`} 
                         genre='Genre' 
+                        key={item.id}
                     />
                 ))}
             </Slider>
