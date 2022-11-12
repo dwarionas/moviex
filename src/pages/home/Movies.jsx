@@ -84,12 +84,12 @@ const Movies = () => {
         </div>
 
         <div>
-            <div className='text-[25px] text-[#F9F9F9] font-bold mt-[10px]'>Popular on TinyMoviez</div>
+            <div className='text-[25px] text-[#F9F9F9] font-bold mt-[20px] mb-[15px]'>Popular on TinyMoviez</div>
             <Slider  {...multiSlider} >
                 {popular && popular.map(item => (
                     <MultiSlider 
                         title={item.title} 
-                        back={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} 
+                        back={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`} 
                         // back={loki}
                         ep={`${item.popularity.toFixed()} Ep`} 
                         genre='Genre' 

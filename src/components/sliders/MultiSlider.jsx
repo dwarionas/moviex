@@ -22,7 +22,7 @@ const MultiSlider = ({ title, back, ep, genre }) => {
             </div>
 
             <img
-                className='w-[70%] h-[120px] rounded-[12px]'
+                className='w-[95%] h-[95%] rounded-[12px] m-0 m-auto'
                 src={back}
                 alt='img'
             />
