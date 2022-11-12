@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 import Slider from "react-slick";
 
@@ -22,7 +23,8 @@ const PersonalContent = () => {
         infinite: false,
         slidesToShow: 1.3,
         slidesToScroll: 1,
-        arrows: false
+        arrows: false,
+        speed: 200,
     };
 
     const continueRef = React.useRef();
@@ -37,8 +39,26 @@ const PersonalContent = () => {
     const genresNext = () => genresRef.current.slickNext();
     const genresPrev = () => genresRef.current.slickPrev();
 
+
+
+    const API_KEY = '3e9b52dbfb07553d4df2f99c97de61e7';
+
+    const [genres, setGenres] = React.useState([]);
+    const [toprated, setToprated] = React.useState([]);
+
+    const getData = async () => {
+        const getGenres = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`);
+        const getToprated = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`);
+
+        setGenres(getGenres.data.genres);
+        setToprated(getToprated.data.results);
+    };
+    React.useEffect(() => {
+        getData();
+    }, []);
+
     return (
-        <div className='RightSide w-[20%] bg-[#21242D] pt-[5px] pl-[25px]'>
+        <div className='RightSide w-[20%] bg-[#21242D] pt-[5px] pl-[10px]'>
             <div className='header flex justify-between mt-[8px] pr-[30px]'>
                 <div className='parent w-[40px] h-[40px] bg-[#F9F9F9] rounded-md pt-[10px]'>
                     <img className='child m-0 m-auto cursor-pointer w-[15px]' src={notification} alt='notification'/>
@@ -87,40 +107,24 @@ const PersonalContent = () => {
             <div className='mt-[30px]'>
                 <Title goNext={topNext} goPrev={topPrev} title='Top Rated' />
                 <Slider className='mt-10px]' ref={topRef} {...settings}>
-                    <SecondSlider
-                        title='Supernatural'
-                        ep='320 Ep'
-                        genre='Horror, Fantasy'
-                        back={supernatural}
-                    />
-                    <SecondSlider
-                        title='Rick and Morty'
-                        ep='49 Ep'
-                        genre='Horror, Fantasy'
-                        back={supernatural}
-                    />
-                    <SecondSlider
-                        title='Supernatural'
-                        ep='320 Ep'
-                        genre='Horror, Fantasy'
-                        back={supernatural}
-                    />
-                    <SecondSlider
-                        title='Rick and Morty'
-                        ep='49 Ep'
-                        genre='Horror, Fantasy'
-                        back={supernatural}
-                    />
+                    {toprated && toprated.map(item => (
+                        <SecondSlider
+                            title={item.title}
+                            ep={`${item.popularity.toFixed()} Ep`}
+                            genre='Horror, Fantasy'
+                            back={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+                            key={item.id}
+                        /> 
+                    ))}
                 </Slider>
             </div>
 
             <div className='mt-[30px]'>
                 <Title goNext={genresNext} goPrev={genresPrev} title='Genres' />
                 <Slider className='mt-[10px]' ref={genresRef} {...settings}>
-                    <ThirdSlide title='Sitcom' img={supernatural} />
-                    <ThirdSlide title='Detective' img={supernatural} />
-                    <ThirdSlide title='Documentary' img={supernatural} />
-                    <ThirdSlide title='Drama' img={supernatural} />
+                    {genres && genres.map(item => (
+                        <ThirdSlide title={item.name} img={supernatural} key={item.id}/>
+                    ))}
                 </Slider>
             </div>
         </div>

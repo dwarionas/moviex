@@ -3,7 +3,7 @@ import React from 'react';
 const MultiSlider = ({ title, back, ep, genre }) => {
     return (
         <div>
-            <div className='absolute top-[6px] ml-[15px]'>
+            <div className='absolute top-[6px]'>
                 <div>
                     <span className='mt-[15px] ml-[10px] text-[20px] font-extrabold text-[#F9F9F9]'>{title}</span>
                     <div className='flex justify-between mt-[110px]'>
@@ -22,7 +22,7 @@ const MultiSlider = ({ title, back, ep, genre }) => {
             </div>
 
             <img
-                className='w-[100%] h-[120px] rounded-[12px]'
+                className='w-[70%] h-[120px] rounded-[12px]'
                 src={back}
                 alt='img'
             />
