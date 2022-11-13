@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-const FirstSlider = ({ logo, title, episodesLeft }) => {
+const ContinueSlider = ({ logo, title, episodesLeft }) => {
     return (
         <div  className='outline-0 border-[#2D2E34] border-[2px] p-[8px] mr-[20px] h-[140px] rounded-[12px] bg-[#16181E]'>
             <div className='flex mb-[6px]'>
@@ -23,4 +23,4 @@ const FirstSlider = ({ logo, title, episodesLeft }) => {
     );
 };
 
-export default FirstSlider;
+export default ContinueSlider

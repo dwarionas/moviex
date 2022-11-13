@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-const ThirdSlide = ({ title, img }) => {
+const GenresSlider = ({ title, img }) => {
     return (
         <div className='flex justify-center'>
             <div className='absolute top-[53px] text-[16px] mr-[25px] font-extrabold text-[#F9F9F9]'>{title}</div>
@@ -9,4 +9,4 @@ const ThirdSlide = ({ title, img }) => {
     );
 };
 
-export default ThirdSlide;
+export default GenresSlider

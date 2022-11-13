@@ -19,14 +19,12 @@ const initialState = {
     status: '',
     trendingState: [],
     popularState: []
-}
+};
 
 const moviesSlice = createSlice({
     name: 'movies',
     initialState,
-    reducers: {
-        
-    },
+    reducers: {},
     extraReducers: builder => {
         builder
             .addCase(moviesRequest.pending, state => {
@@ -47,6 +45,6 @@ const moviesSlice = createSlice({
     }
 });
 
-export const { setTrending } = moviesSlice.actions;
+// export const {  } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

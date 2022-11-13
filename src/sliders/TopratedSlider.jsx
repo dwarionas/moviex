@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-const SecondSlider = ({ back, title, ep, genre }) => {
+const TopratedSlider = ({ bg, title, ep, genre }) => {
     return (
         <div>
             <div className='absolute top-[6px] ml-[10px]'>
@@ -23,11 +23,11 @@ const SecondSlider = ({ back, title, ep, genre }) => {
 
             <img
                 className='h-[140px] rounded-[12px]'
-                src={back}
+                src={bg}
                 alt='img'
             />
         </div>
     );
 };
 
-export default SecondSlider;
+export default TopratedSlider

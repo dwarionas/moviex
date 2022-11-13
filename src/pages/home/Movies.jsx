@@ -3,51 +3,18 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { moviesRequest } from '../../redux/slices/moviesSlice';
 
-import Slider from "react-slick";
-import MultiSlider from "../../components/sliders/MultiSlider";
-import SingleSlider from "../../components/sliders/SingleSlider";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation } from 'swiper'
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
-import prevbtn from '../../assets/imgs/prevbtn.svg'
-import nextbtn from '../../assets/imgs/nextbtn.svg'
-
+import TrendingSlider from '../../sliders/TrendingSlider';
+import PopularSlider from '../../sliders/PopularSlider';
 
 const Movies = () => {
-    const singleSlider = {
-        arrows: false,
-        dots: true,
-        infinite: false,
-        speed: 200,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        dotsClass: 'slick-dots',
-        appendDots: dots => (
-            <div
-                style={{
-                    borderRadius: "5px",
-                    translate: '0px -50px',
-                }}
-            >
-                <ul style={{ margin: "0px" }}> {dots} </ul>
-            </div>
-        )
-    }
-    const multiSlider = {
-        dots: false,
-        speed: 200,
-        infinite: false,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        arrows: false,
-        adaptiveHeight: true,
-        className: ''
-    };
-    const slideRef = React.useRef();
-    const goNext = () => slideRef.current.slickNext();
-    const goPrev = () => slideRef.current.slickPrev();
-
-
     const dispatch = useDispatch();
-    const { status, trendingState, popularState } = useSelector(state => state.movies)
+    const { status, trendingState, popularState } = useSelector(state => state.movies);
 
     React.useEffect(() => {
         dispatch(moviesRequest());
@@ -55,9 +22,57 @@ const Movies = () => {
     
 
     return (
-      <>
-        <div>
-            <img onClick={goPrev} className='absolute top-[220px] left-[338px] cursor-pointer z-50' src={prevbtn} alt='img' />
+      <div className='movies mt-[20px]'>
+        <div className='trending'>
+            <Swiper
+                modules={[Navigation, Pagination]}
+                slidesPerView={1}
+                navigation
+                pagination={{ clickable: true }}
+                className='trendingSlider w-[100%] h-[400px] overflow-hidden'
+            >
+                {trendingState && trendingState.map(item => (
+                    <SwiperSlide className='trendingSlide w-[100%]' key={item.id}>
+                        <TrendingSlider 
+                            img={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
+                            name={item.title}
+                        />
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+            <div className='z-50 parent cursor-pointer rounded-xl pl-[15px] pr-[15px] flex justify-between absolute top-[400px] ml-[15px] w-[150px] h-[50px]'>
+                <span className='child text-[32px] font-bold'>+</span>
+                <span className='child text-[18px] font-bold mt-[12px]'>Watchlist</span>
+            </div>
+            <div className='z-50 cursor-pointer bg-[#00B9AE] rounded-xl flex justify-center absolute top-[400px] ml-[773px] w-[150px] h-[50px]'>
+                <span className='text-[#16181E] text-[18px] font-extrabold mt-[12px]'>Watch Now</span>
+            </div>
+        </div>
+        
+        <div className="popular">
+            <div className='text-[25px] text-[#F9F9F9] font-bold mt-[18px] mb-[10px]'>Popular on TinyMoviez</div>
+            <Swiper
+                slidesPerView={3}
+            >
+                {popularState && popularState.map(item => (
+                    <SwiperSlide key={item.id}>
+                        <PopularSlider 
+                            title={item.title}
+                            bg={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
+                            ep={`${item.popularity.toFixed()} Ep`} 
+                            genre='Genre' 
+                            key={item.id}
+                        />
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        </div>
+
+
+
+
+        {/* <div>
+            <img className='absolute top-[220px] left-[338px] cursor-pointer z-50'  alt='img' />
             <Slider className='z-10 w-[100%] h-[400px] overflow-hidden'  ref={slideRef} {...singleSlider} >
                 {trendingState && trendingState.map(item => (
                     <SingleSlider img={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`} title={item.title} key={item.id} />
@@ -71,10 +86,10 @@ const Movies = () => {
             <div className='z-50 cursor-pointer bg-[#00B9AE] rounded-xl flex justify-center absolute top-[355px] ml-[615px] w-[150px] h-[50px]'>
                 <span className='text-[#16181E] text-[18px] font-extrabold mt-[12px]'>Watch Now</span>
             </div>
-            <img onClick={goNext} className='absolute top-[220px] right-[450px] cursor-pointer z-50' src={nextbtn} alt='img' />
-        </div>
+            <img className='absolute top-[220px] right-[450px] cursor-pointer z-50'  alt='img' />
+        </div> */}
 
-        <div>
+        {/* <div>
             <div className='text-[25px] text-[#F9F9F9] font-bold mt-[20px] mb-[15px]'>Popular on TinyMoviez</div>
             <Slider  {...multiSlider} >
                 {popularState && popularState.map(item => (
@@ -87,8 +102,8 @@ const Movies = () => {
                     />
                 ))}
             </Slider>
-        </div>
-      </>
+        </div> */}
+      </div>
     );
 };
 

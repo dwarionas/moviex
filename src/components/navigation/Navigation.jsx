@@ -7,7 +7,8 @@ import Icon from "../Icon";
 import logo from '../../assets/imgs/logo.svg'
 
 const Navigation = () => {
-    const { pathname } = useLocation();
+    const location = useLocation();
+    const { pathname } = location;
     const splittedLocation = pathname.split("/");
 
     const activeLink = (location, current) => location === current ? "text-[#00B9AE]" : "text-[#B2B3B6]";

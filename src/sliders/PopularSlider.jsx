@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-const MultiSlider = ({ title, back, ep, genre }) => {
+const PopularSlider = ({ title, bg, ep, genre }) => {
     return (
         <div>
             <div className='absolute top-[6px]'>
@@ -23,11 +23,12 @@ const MultiSlider = ({ title, back, ep, genre }) => {
 
             <img
                 className='w-[95%] h-[95%] rounded-[12px] m-0 m-auto'
-                src={back}
+                src={bg}
                 alt='img'
             />
         </div>
     );
 };
 
-export default MultiSlider;
+
+export default PopularSlider
