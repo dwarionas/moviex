@@ -3,9 +3,9 @@ import axios from 'axios';
 
 const API_KEY = '3e9b52dbfb07553d4df2f99c97de61e7';
 
-export const moviesRequest = createAsyncThunk('movies/moviesRequestStatus', async () => {
-    const getTrending = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`);
-    const getPopular = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
+export const seriesRequest = createAsyncThunk('movies/moviesRequestStatus', async () => {
+    const getTrending = await axios.get(`https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}`);
+    const getPopular = await axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`);
 
     return (
         {
@@ -21,23 +21,23 @@ const initialState = {
     popularState: []
 };
 
-const moviesSlice = createSlice({
-    name: 'movies',
+const seriesSlice = createSlice({
+    name: 'series',
     initialState,
     reducers: {},
     extraReducers: builder => {
         builder
-            .addCase(moviesRequest.pending, state => {
+            .addCase(seriesRequest.pending, state => {
                 state.status = 'pending';
                 state.trendingState = [];
                 state.popularState = [];
             })
-            .addCase(moviesRequest.fulfilled, (state, action) => {
+            .addCase(seriesRequest.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
                 state.trendingState = action.payload.trending;
                 state.popularState = action.payload.popular;
             })
-            .addCase(moviesRequest.rejected, state => {
+            .addCase(seriesRequest.rejected, state => {
                 state.status = 'rejected';
                 state.trendingState = [];
                 state.popularState = [];
@@ -45,6 +45,6 @@ const moviesSlice = createSlice({
     }
 });
 
-// export const {  } = moviesSlice.actions;
+// export const {  } = seriesSlice.actions;
 
-export default moviesSlice.reducer;
+export default seriesSlice.reducer;
