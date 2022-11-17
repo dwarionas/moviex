@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Routes, Route } from "react-router-dom";
 
-import Header from './Header';
 import Movies from './Movies';
 import Series from './Series';
 import SearchPage from './SearchPage';
@@ -10,10 +9,10 @@ import SearchPage from './SearchPage';
 const Home = () => {
   return (
     <>
-      <Header/>
       <Routes>
         <Route path='/' element={<Movies/>} />
         <Route path='/series' element={<Series/>} />
+        <Route path='/search' element={<SearchPage/>} />
       </Routes>
     </>
   )

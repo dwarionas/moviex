@@ -7,6 +7,24 @@
     /* overflow: hidden; */
 }
 
+.MainContent {
+    height: 100%;
+    margin: 0em;
+    overflow-y: auto;
+}
+
+.MainContent::-webkit-scrollbar {
+    width: 5px;
+}
+.MainContent::-webkit-scrollbar-track {
+    background: rgba(249, 249, 249, 0.2);
+}
+.MainContent::-webkit-scrollbar-thumb {
+    background-color: #00B9AE;
+    border-radius: 20px;
+    border: 3px solid rgba(249, 249, 249, 0.2);
+}
+
 .parent {
     background-color: rgba(249, 249, 249, 0.2);
 }
