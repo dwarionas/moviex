@@ -1,5 +1,4 @@
-import React from 'react'
-import qs from 'qs';
+import React from 'react';
 
 import { Routes, Route } from "react-router-dom";
 
@@ -13,12 +12,8 @@ import SingleItem from '../SingleItem';
 import NotFound from '../NotFound';
 
 const MainContent = () => {
-    React.useEffect(() => {
-
-    }, []);
-
     return (
-        <div className='MainContent pl-[30px] pt-[5px] pr-[30px] pb-[68px] w-[65%] bg-[#16181E] border-x-[#2D2E34] border-r'>
+        <div className='MainContent pl-[30px] pt-[5px] pr-[30px] w-[65%] bg-[#16181E] border-x-[#2D2E34] border-r'>
             <Routes>
                 <Route path='/*' element={<Home />} />
                 <Route path='awards' element={<Awards/>} />

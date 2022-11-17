@@ -3,8 +3,9 @@ import axios from 'axios';
 
 const API_KEY = '3e9b52dbfb07553d4df2f99c97de61e7';
 
-export const requestSingleItem = createAsyncThunk('singleItem/statuRequestSingleItem', async (id) => {
-    const getSearchResult = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`);
+export const requestSingleItem = createAsyncThunk('singleItem/statuRequestSingleItem', async (props) => {
+    const { id, genre } = props;
+    const getSearchResult = await axios.get(`https://api.themoviedb.org/3/${genre}/${id}?api_key=${API_KEY}`);
     return getSearchResult.data;
 });
 
@@ -13,7 +14,7 @@ const initialState = {
 };
 
 const singleSlice = createSlice({
-    name: 'search',
+    name: 'single',
     initialState,
     reducers: {},
     extraReducers: builder => {

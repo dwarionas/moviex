@@ -18,7 +18,7 @@ const SearchPage = () => {
   React.useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
-      dispatch(setSearchParams(params))
+      dispatch(setSearchParams(params));
       dispatch(requestSearch({
         searchString: params.query, 
         currentPage: params.genre
@@ -38,8 +38,8 @@ const SearchPage = () => {
   }, [currentPage, searchQuery]);
 
   return (
-    <div>
-      <div onClick={() => navigate(-1)} className='cursor-pointer mt-[10px]'><img src={backButton} /></div>
+    <div className='search'>
+      <div onClick={() => navigate(currentPage === 'movie' ? '/' : '/series')} className='cursor-pointer mt-[10px]'><img src={backButton} /></div>
       <div className="content">
         {searchState && searchState.map(item => (
           <div className="item flex mt-[20px] mb-[20px]"  key={item.id}>

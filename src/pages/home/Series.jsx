@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { seriesRequest } from '../../redux/slices/seriesSlice';
+import { setCurrentPage } from '../../redux/slices/searchSlice';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper'
@@ -20,6 +21,7 @@ const Series = () => {
 
     React.useEffect(() => {
         dispatch(seriesRequest());
+        dispatch(setCurrentPage('tv'));
     }, []);
     
 
@@ -65,6 +67,7 @@ const Series = () => {
                                     bg={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
                                     ep={`${item.popularity.toFixed()} Ep`} 
                                     genre='Genre' 
+                                    id={item.id}
                                     key={item.id}
                                 />
                             </SwiperSlide>
