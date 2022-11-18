@@ -1,7 +1,11 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
+
 import { Link } from 'react-router-dom';
 
 const PopularSlider = ({ title, bg, ep, genre, id }) => {
+    const currentPage = useSelector(state => state.search.currentPage);
+
     return (
         <div className='relative'>
             <div className='absolute top-[6px]'>
@@ -26,7 +30,7 @@ const PopularSlider = ({ title, bg, ep, genre, id }) => {
                     <span className='child text-[27px] font-extrabold text-[#F9f9f9]'>+</span>
                 </div>
                 <div className='cursor-pointer pt-[7px] pl-[30px] bg-[#00B9AE] w-[115px] h-[40px] rounded-[12px] ml-[115px]'>
-                    <Link to={`/item/${id}`}><span className='text-[17px] text-[#16181E] font-[800]'>Watch</span></Link>
+                    <Link to={`/${currentPage}/${id}`}><span className='text-[17px] text-[#16181E] font-[800]'>Watch</span></Link>
                 </div>
             </div>
         </div>

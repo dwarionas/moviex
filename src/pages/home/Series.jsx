@@ -42,17 +42,18 @@ const Series = () => {
                                 <TrendingSlider 
                                     img={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
                                     name={item.name}
+                                    id={item.id}
                                 />
                             </SwiperSlide>
                         ))}
                     </Swiper>
-                    <div className='z-50 parent cursor-pointer rounded-xl pl-[15px] pr-[15px] flex justify-between absolute top-[400px] ml-[15px] w-[150px] h-[50px]'>
+                    {/* <div className='z-50 parent cursor-pointer rounded-xl pl-[15px] pr-[15px] flex justify-between absolute top-[400px] ml-[15px] w-[150px] h-[50px]'>
                         <span className='child text-[32px] font-bold'>+</span>
                         <span className='child text-[18px] font-bold mt-[12px]'>Watchlist</span>
                     </div>
                     <div className='z-50 cursor-pointer bg-[#00B9AE] rounded-xl flex justify-center absolute top-[400px] ml-[773px] w-[150px] h-[50px]'>
                         <span className='text-[#16181E] text-[18px] font-extrabold mt-[12px]'>Watch Now</span>
-                    </div>
+                    </div> */}
                 </div>
             
                 <div className="popular">
