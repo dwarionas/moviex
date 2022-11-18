@@ -19,7 +19,7 @@ const MainContent = () => {
                 <Route path='awards' element={<Awards/>} />
                 <Route path='celebrities' element={<Celebrities/>} />
                 <Route path='discover' element={<Discover/>} />
-                <Route path='item/:id' element={<SingleItem/>} />
+                <Route path='/:show/:id' element={<SingleItem/>} />
                 {/* <Route path='*' element={<NotFound/>} /> */}
             </Routes>
         </div>

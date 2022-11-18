@@ -13,9 +13,6 @@ const Header = () => {
   const splittedLocation = pathname.split("/");
   const activeLink = (location, link) => location === link ? "text-[#00B9AE] border-y-[#00B9AE] border-b-[3px]" : "text-[#F9F9F9]";
 
-  // const searchQuery = useSelector(state => state.search.searchQuery);
-  // const currentPage = useSelector(state => state.search.currentPage);
-
   const detectCurrentPage = () => {
     if (splittedLocation[1] === '') {
       return 'movie'

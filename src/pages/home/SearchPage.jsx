@@ -43,11 +43,11 @@ const SearchPage = () => {
       <div className="content">
         {searchState && searchState.map(item => (
           <div className="item flex mt-[20px] mb-[20px]"  key={item.id}>
-            <Link to={`/item/${item.id}`} className='text-[#F9F9F9]'>
+            <Link to={`/${currentPage}/${item.id}`} className='text-[#F9F9F9]'>
               <img className='w-[300px] ' src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`} />
             </Link>
             <div className='ml-[20px]'>
-              <Link to={`/item/${item.id}`} className='text-[#F9F9F9]'>{item.title || item.name}</Link>
+              <Link to={`/${currentPage}/${item.id}`} className='text-[#F9F9F9]'>{item.title || item.name}</Link>
               <div className='text-[#F9F9F9]'>{item.vote_average}</div>
               <div className='text-[#F9F9F9]'>{item.release_date || item.first_air_date}</div>
               <div className='text-[#F9F9F9]'>{item.id}</div>
