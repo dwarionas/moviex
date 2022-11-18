@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { setSearchParams, requestSearch } from '../../redux/slices/searchSlice';
 
 import backButton from '../../assets/imgs/backButton.svg';
+import Header from './Header';
 
 const SearchPage = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,16 @@ const SearchPage = () => {
 
   return (
     <div className='search'>
-      <div onClick={() => navigate(currentPage === 'movie' ? '/' : '/series')} className='cursor-pointer mt-[10px]'><img src={backButton} /></div>
+      {/* <div className="searchHeader flex justify-between">
+        <div onClick={() => navigate(currentPage === 'movie' ? '/' : '/series')} className='cursor-pointer mt-[10px] '>
+          <img src={backButton} />
+        </div>
+
+        <div className="w-[90%] ">
+          <Header/>
+        </div>
+      </div> */}
+
       <div className="content">
         {searchState && searchState.map(item => (
           <div className="item flex mt-[20px] mb-[20px]"  key={item.id}>

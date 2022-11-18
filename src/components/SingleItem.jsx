@@ -1,6 +1,5 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-
 import { useParams } from 'react-router-dom'
 
 import { requestSingleItem } from '../redux/slices/singleSlice';
@@ -16,6 +15,8 @@ const SingleItem = () => {
             dispatch(requestSingleItem({id, genre: show}));
         }
     }, [id, show]);
+
+    // console.log(`id ${id}, show ${show}, `)
 
     return (
         <div className="item">

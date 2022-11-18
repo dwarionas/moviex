@@ -12,7 +12,7 @@ export const requestSearch = createAsyncThunk('search/statusRequestSearch', asyn
 
 const initialState = {
     searchState: [],
-    currentPage: '',
+    currentPage: 'movie',
     searchQuery: ''
 };
 

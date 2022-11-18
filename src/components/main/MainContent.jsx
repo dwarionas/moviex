@@ -8,7 +8,7 @@ import Celebrities from '../../pages/celebrities/Celebrities';
 import Discover from '../../pages/discover/Discover';
 
 import SingleItem from '../SingleItem';
-
+import SearchPage from '../../pages/home/SearchPage';
 import NotFound from '../NotFound';
 
 const MainContent = () => {
@@ -20,6 +20,7 @@ const MainContent = () => {
                 <Route path='celebrities' element={<Celebrities/>} />
                 <Route path='discover' element={<Discover/>} />
                 <Route path='/:show/:id' element={<SingleItem/>} />
+                <Route path='/search' element={<SearchPage/>} />
                 {/* <Route path='*' element={<NotFound/>} /> */}
             </Routes>
         </div>
