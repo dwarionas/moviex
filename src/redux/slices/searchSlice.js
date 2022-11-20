@@ -5,7 +5,8 @@ const API_KEY = '3e9b52dbfb07553d4df2f99c97de61e7';
 
 export const requestSearch = createAsyncThunk('search/statusRequestSearch', async (props) => {
     const { searchString, currentPage } = props;
-    const getSearchResult = await axios.get(`https://api.themoviedb.org/3/search/${currentPage}?api_key=${API_KEY}&query=${searchString}`);
+    const getSearchResult = await axios.
+    get(`https://api.themoviedb.org/3/search/${currentPage}?api_key=${API_KEY}&query=${searchString}&page=1&language=en-US`);
 
     return getSearchResult.data.results;
 });
@@ -13,7 +14,8 @@ export const requestSearch = createAsyncThunk('search/statusRequestSearch', asyn
 const initialState = {
     searchState: [],
     currentPage: 'movie',
-    searchQuery: ''
+    searchQuery: '',
+    genresArray: []
 };
 
 const searchSlice = createSlice({
